@@ -23,7 +23,6 @@ class MoviesCollectionViewController: UIViewController, UICollectionViewDataSour
         super.viewDidLoad()
         
         
-        self.networkErrorView.hidden = true
         collectionView.dataSource = self
         
         let refreshControl = UIRefreshControl()
@@ -48,21 +47,26 @@ class MoviesCollectionViewController: UIViewController, UICollectionViewDataSour
         
         MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         
-        
         let task : NSURLSessionDataTask = session.dataTaskWithRequest(request,
             completionHandler: { (dataOrNil, response, error) in
                 if let data = dataOrNil {
-                    if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
-                        data, options:[]) as? NSDictionary {
-                            NSLog("response: \(responseDictionary)")
+                    if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(data, options:[]) as? NSDictionary {
+                       // NSLog("response: \(responseDictionary)")
                             
-                            MBProgressHUD.hideHUDForView(self.view, animated: true)
+                        MBProgressHUD.hideHUDForView(self.view, animated: true)
                             
-                            self.movies = responseDictionary["results"] as! [NSDictionary]
-                            self.collectionView.reloadData()
-                    } else {
-                        self.networkErrorView.hidden = false
+                        self.movies = responseDictionary["results"] as? [NSDictionary]
+                        self.collectionView.reloadData()
+                        self.networkErrorView.hidden = true
+
                     }
+                } else {
+                    
+                    // 
+                    // never able to  enter the else. Not sure Why?
+                    print("FLAG: in network error ELSE")
+                    self.networkErrorView.hidden = false
+
                 }
         });
         task.resume()
