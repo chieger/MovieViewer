@@ -72,10 +72,10 @@
             </objects>
             <point key="canvasLocation" x="234" y="378"/>
         </scene>
-        <!--Movies View Controller-->
+        <!--Movies Collection View Controller-->
         <scene sceneID="YGM-u7-VTl">
             <objects>
-                <viewController id="h5J-LY-dad" customClass="MoviesViewController" customModule="MovieViewer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="h5J-LY-dad" customClass="MoviesCollectionViewController" customModule="MovieViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bCV-1P-Mrq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -105,7 +105,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <outlet property="posterCollectionView" destination="NR7-Ip-bnG" id="BPs-nR-10N"/>
+                                            <outlet property="posterCollectionView" destination="NR7-Ip-bnG" id="Gyf-hO-6no"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -115,7 +115,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="4Tt-wr-QRI"/>
                     <connections>
-                        <outlet property="collectionView" destination="Tas-Iv-diq" id="xDh-fW-TqN"/>
+                        <outlet property="collectionView" destination="Tas-Iv-diq" id="nvu-Np-VdK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UyU-AO-mpl" userLabel="First Responder" sceneMemberID="firstResponder"/>
