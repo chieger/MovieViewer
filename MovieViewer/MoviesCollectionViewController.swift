@@ -16,19 +16,27 @@ class MoviesCollectionViewController: UIViewController, UICollectionViewDataSour
     @IBOutlet weak var collectionView: UICollectionView!
     
     var movies: [NSDictionary]?
+    @IBOutlet weak var networkErrorView: UIView!
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-        
+        self.networkErrorView.hidden = true
         collectionView.dataSource = self
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refreshControlAction:", forControlEvents: UIControlEvents.ValueChanged)
         collectionView.insertSubview(refreshControl, atIndex: 0)
         
+       getStuffFromNetwork()
+
+
+        // Do any additional setup after loading the view.
+    }
+    
+    func getStuffFromNetwork() {
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         let url = NSURL(string:"https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
         let request = NSURLRequest(URL: url!)
@@ -52,14 +60,17 @@ class MoviesCollectionViewController: UIViewController, UICollectionViewDataSour
                             
                             self.movies = responseDictionary["results"] as! [NSDictionary]
                             self.collectionView.reloadData()
+                    } else {
+                        self.networkErrorView.hidden = false
                     }
                 }
         });
         task.resume()
-
-
-        // Do any additional setup after loading the view.
     }
+    
+    
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -115,6 +126,7 @@ class MoviesCollectionViewController: UIViewController, UICollectionViewDataSour
     func refreshControlAction(refreshControl: UIRefreshControl) {
         
         self.collectionView.reloadData()
+        getStuffFromNetwork()
         refreshControl.endRefreshing()
     }
     
