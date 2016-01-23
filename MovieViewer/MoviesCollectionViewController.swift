@@ -80,11 +80,43 @@ class MoviesCollectionViewController: UIViewController, UICollectionViewDataSour
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MovieCollectionViewCell", forIndexPath: indexPath) as! MovieCollectionViewCell
         
+        let movie = movies![indexPath.row]
+//        let title = movie["title"] as! String
+//        let overview = movie ["overview"] as! String
+        let baseUrl = "http://image.tmdb.org/t/p/w500"
+        
+        let posterPath = movie["poster_path"] as! String
+        
+        let imageUrl = NSURL(string: baseUrl + posterPath)
+//        
+//        cell.titleLabel.text = title
+//        cell.overviewLabel.text = overview
+        
+        if let posterPath = movie["poster_path"] as? String {
+            let posterBaseUrl = "http://image.tmdb.org/t/p/w500"
+            let posterUrl = NSURL(string: posterBaseUrl + posterPath)
+            cell.posterCollectionView.setImageWithURL(posterUrl!)
+        }
+        else {
+            // No poster image. Can either set to nil (no image) or a default movie poster image
+            // that you include as an asset
+            cell.posterCollectionView.image = nil
+        }
+        
+        
+        print ("row \(indexPath.row)")
+
         
         
         return cell
     }
     
+    
+    func refreshControlAction(refreshControl: UIRefreshControl) {
+        
+        self.collectionView.reloadData()
+        refreshControl.endRefreshing()
+    }
     
 
     /*
