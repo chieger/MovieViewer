@@ -15,6 +15,9 @@
 		002984C91C4F0BDF008E705F /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002984C81C4F0BDF008E705F /* MovieCell.swift */; };
 		3E1ED6B21C53186100D4CDB5 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1ED6B11C53186100D4CDB5 /* MovieCollectionViewCell.swift */; };
 		3E37CFAB1C53249900F29C67 /* MoviesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E37CFAA1C53249900F29C67 /* MoviesCollectionViewController.swift */; };
+		3E7176AF1C54B589009B8753 /* gridMarekPolakovic.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E7176AC1C54B589009B8753 /* gridMarekPolakovic.png */; };
+		3E7176B01C54B589009B8753 /* gridThomasHelbig.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E7176AD1C54B589009B8753 /* gridThomasHelbig.png */; };
+		3E7176B11C54B589009B8753 /* warningDalpatPrajapati.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E7176AE1C54B589009B8753 /* warningDalpatPrajapati.png */; };
 		D3C98DAC6401769949F3B975 /* Pods_MovieViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDAD8842B994CB9EA6E2A9E4 /* Pods_MovieViewer.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +33,9 @@
 		1B62AB4AFFB4B6968A8A646D /* Pods-MovieViewer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieViewer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieViewer/Pods-MovieViewer.debug.xcconfig"; sourceTree = "<group>"; };
 		3E1ED6B11C53186100D4CDB5 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		3E37CFAA1C53249900F29C67 /* MoviesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesCollectionViewController.swift; sourceTree = "<group>"; };
+		3E7176AC1C54B589009B8753 /* gridMarekPolakovic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gridMarekPolakovic.png; sourceTree = SOURCE_ROOT; };
+		3E7176AD1C54B589009B8753 /* gridThomasHelbig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gridThomasHelbig.png; sourceTree = SOURCE_ROOT; };
+		3E7176AE1C54B589009B8753 /* warningDalpatPrajapati.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warningDalpatPrajapati.png; sourceTree = SOURCE_ROOT; };
 		DDAD8842B994CB9EA6E2A9E4 /* Pods_MovieViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E33A44EBB79FEB73CE1E60BD /* Pods-MovieViewer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieViewer.release.xcconfig"; path = "Pods/Target Support Files/Pods-MovieViewer/Pods-MovieViewer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -67,6 +73,7 @@
 		002984AA1C4EF988008E705F /* MovieViewer */ = {
 			isa = PBXGroup;
 			children = (
+				3E7176B21C54B590009B8753 /* images */,
 				002984CA1C4F0BE2008E705F /* view controllers */,
 				002984C71C4F0B7C008E705F /* Views */,
 				002984AB1C4EF988008E705F /* AppDelegate.swift */,
@@ -94,6 +101,16 @@
 				3E37CFAA1C53249900F29C67 /* MoviesCollectionViewController.swift */,
 			);
 			name = "view controllers";
+			sourceTree = "<group>";
+		};
+		3E7176B21C54B590009B8753 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				3E7176AC1C54B589009B8753 /* gridMarekPolakovic.png */,
+				3E7176AE1C54B589009B8753 /* warningDalpatPrajapati.png */,
+				3E7176AD1C54B589009B8753 /* gridThomasHelbig.png */,
+			);
+			name = images;
 			sourceTree = "<group>";
 		};
 		527450906AE8D38F48109A1B /* Frameworks */ = {
@@ -176,7 +193,10 @@
 			files = (
 				002984B61C4EF988008E705F /* LaunchScreen.storyboard in Resources */,
 				002984B31C4EF988008E705F /* Assets.xcassets in Resources */,
+				3E7176B01C54B589009B8753 /* gridThomasHelbig.png in Resources */,
 				002984B11C4EF988008E705F /* Main.storyboard in Resources */,
+				3E7176AF1C54B589009B8753 /* gridMarekPolakovic.png in Resources */,
+				3E7176B11C54B589009B8753 /* warningDalpatPrajapati.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
