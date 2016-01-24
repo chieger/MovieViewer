@@ -25,6 +25,9 @@ class MoviesCollectionViewController: UIViewController, UICollectionViewDataSour
         
         collectionView.dataSource = self
         
+        self.networkErrorView.hidden = true
+
+        
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refreshControlAction:", forControlEvents: UIControlEvents.ValueChanged)
         collectionView.insertSubview(refreshControl, atIndex: 0)
@@ -38,11 +41,12 @@ class MoviesCollectionViewController: UIViewController, UICollectionViewDataSour
     func getStuffFromNetwork() {
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         let url = NSURL(string:"https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
-        let request = NSURLRequest(URL: url!)
+        let request = NSURLRequest(URL: url!, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = NSURLSession(
             configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
             delegate:nil,
             delegateQueue:NSOperationQueue.mainQueue()
+            
         )
         
         MBProgressHUD.showHUDAddedTo(self.view, animated: true)
@@ -50,6 +54,7 @@ class MoviesCollectionViewController: UIViewController, UICollectionViewDataSour
         let task : NSURLSessionDataTask = session.dataTaskWithRequest(request,
             completionHandler: { (dataOrNil, response, error) in
                 if let data = dataOrNil {
+            
                     if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(data, options:[]) as? NSDictionary {
                        // NSLog("response: \(responseDictionary)")
                             
@@ -59,15 +64,22 @@ class MoviesCollectionViewController: UIViewController, UICollectionViewDataSour
                         self.collectionView.reloadData()
                         self.networkErrorView.hidden = true
 
+
                     }
                 } else {
-                    
+                
                     // 
                     // never able to  enter the else. Not sure Why?
                     print("FLAG: in network error ELSE")
                     self.networkErrorView.hidden = false
+                    self.collectionView.reloadData()
+                    
+                    MBProgressHUD.hideHUDForView(self.view, animated: true)
 
                 }
+                
+                
+
         });
         task.resume()
     }
