@@ -68,7 +68,7 @@ class MoviesCollectionViewController: UIViewController, UICollectionViewDataSour
                     self.networkErrorCollectionView.hidden = false
                     self.collectionView.reloadData()
                     
-                   MBProgressHUD.hideHUDForView(self.view, animated: true)
+                    MBProgressHUD.hideHUDForView(self.view, animated: true)
                     self.getStuffFromNetwork()
                     // Note because of this call the MBProgressHUD freaks out unti the wifi is restored.
                 }

@@ -93,15 +93,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                         
                     }
                 } else {
-                    
-                    //
-                    // never able to  enter the else. Not sure Why?
-                    print("FLAG: in network error ELSE")
                     self.networkErrorTableView.hidden = false
                     self.tableView.reloadData()
                     
                     MBProgressHUD.hideHUDForView(self.view, animated: true)
-                    
+                    self.getStuffFromNetwork()
                 }
                 
                 
@@ -167,6 +163,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     func refreshControlAction(refreshControl: UIRefreshControl) {
         
         self.tableView.reloadData()
+        getStuffFromNetwork()
         refreshControl.endRefreshing()
     }
     
