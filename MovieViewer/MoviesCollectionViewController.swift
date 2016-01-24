@@ -15,24 +15,22 @@ class MoviesCollectionViewController: UIViewController, UICollectionViewDataSour
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var networkErrorCollectionView: UIView!
     var movies: [NSDictionary]?
-    @IBOutlet weak var networkErrorView: UIView!
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         collectionView.dataSource = self
-        
-        self.networkErrorView.hidden = true
+        self.networkErrorCollectionView.hidden = true
 
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refreshControlAction:", forControlEvents: UIControlEvents.ValueChanged)
         collectionView.insertSubview(refreshControl, atIndex: 0)
         
-       getStuffFromNetwork()
+        getStuffFromNetwork()
 
 
         // Do any additional setup after loading the view.
@@ -62,19 +60,18 @@ class MoviesCollectionViewController: UIViewController, UICollectionViewDataSour
                             
                         self.movies = responseDictionary["results"] as? [NSDictionary]
                         self.collectionView.reloadData()
-                        self.networkErrorView.hidden = true
+                        self.networkErrorCollectionView.hidden = true
 
 
                     }
                 } else {
                 
-                    // 
-                    // never able to  enter the else. Not sure Why?
                     print("FLAG: in network error ELSE")
-                    self.networkErrorView.hidden = false
+                    self.networkErrorCollectionView.hidden = false
                     self.collectionView.reloadData()
                     
-                    MBProgressHUD.hideHUDForView(self.view, animated: true)
+                   MBProgressHUD.hideHUDForView(self.view, animated: true)
+                    self.getStuffFromNetwork()
 
                 }
                 

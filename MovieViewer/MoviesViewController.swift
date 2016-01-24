@@ -40,6 +40,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var networkErrorTableView: UIView!
     
     
     var movies: [NSDictionary]?
@@ -49,42 +50,68 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         tableView.dataSource = self
         tableView.delegate = self
-        
+        self.networkErrorTableView.hidden = true
+
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refreshControlAction:", forControlEvents: UIControlEvents.ValueChanged)
         tableView.insertSubview(refreshControl, atIndex: 0)
         
+        getStuffFromNetwork()
+        
+
+        // Do any additional setup after loading the view.
+    }
+    
+    
+    func getStuffFromNetwork() {
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         let url = NSURL(string:"https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
-        let request = NSURLRequest(URL: url!)
+        let request = NSURLRequest(URL: url!, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = NSURLSession(
             configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
             delegate:nil,
             delegateQueue:NSOperationQueue.mainQueue()
+            
         )
         
         MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-
         
         let task : NSURLSessionDataTask = session.dataTaskWithRequest(request,
             completionHandler: { (dataOrNil, response, error) in
                 if let data = dataOrNil {
-                    if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
-                        data, options:[]) as? NSDictionary {
-                            NSLog("response: \(responseDictionary)")
-                            
-                            MBProgressHUD.hideHUDForView(self.view, animated: true)
-
-                            self.movies = responseDictionary["results"] as! [NSDictionary]
-                            self.tableView.reloadData()
+                    
+                    if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(data, options:[]) as? NSDictionary {
+                        // NSLog("response: \(responseDictionary)")
+                        
+                        MBProgressHUD.hideHUDForView(self.view, animated: true)
+                        
+                        self.movies = responseDictionary["results"] as? [NSDictionary]
+                        self.tableView.reloadData()
+                        self.networkErrorTableView.hidden = true
+                        
+                        
                     }
+                } else {
+                    
+                    //
+                    // never able to  enter the else. Not sure Why?
+                    print("FLAG: in network error ELSE")
+                    self.networkErrorTableView.hidden = false
+                    self.tableView.reloadData()
+                    
+                    MBProgressHUD.hideHUDForView(self.view, animated: true)
+                    
                 }
+                
+                
+                
         });
         task.resume()
-
-        // Do any additional setup after loading the view.
     }
+    
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -135,6 +162,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
 
+    
     
     func refreshControlAction(refreshControl: UIRefreshControl) {
         
