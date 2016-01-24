@@ -46,6 +46,10 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 Right now the display of my Network Error technically works but it is a little bit janky.
 
+Images Used:
+Warning by Dalpat Prajapati from the Noun Project
+
+
 ## License
 
     Copyright 2016 Dustyn Buchanan August
