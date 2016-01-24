@@ -65,14 +65,12 @@ class MoviesCollectionViewController: UIViewController, UICollectionViewDataSour
 
                     }
                 } else {
-                
-                    print("FLAG: in network error ELSE")
                     self.networkErrorCollectionView.hidden = false
                     self.collectionView.reloadData()
                     
                    MBProgressHUD.hideHUDForView(self.view, animated: true)
                     self.getStuffFromNetwork()
-
+                    // Note because of this call the MBProgressHUD freaks out unti the wifi is restored.
                 }
                 
                 
@@ -81,10 +79,6 @@ class MoviesCollectionViewController: UIViewController, UICollectionViewDataSour
         task.resume()
     }
     
-    
-    
-    
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
