@@ -36,7 +36,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 ## Video Walkthrough 
 
-Here's a [walkthrough](http://i.imgur.com/xVbJXST.gif) of implemented user stories:
+[Here's a walkthrough of implemented user stories](http://i.imgur.com/xVbJXST.gif):
 
 <img src='http://i.imgur.com/xVbJXST.gif' title='Movie Viewer Walkthrough' width='250' alt='Video Walkthrough' />
 
